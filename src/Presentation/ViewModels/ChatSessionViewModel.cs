@@ -1,3 +1,5 @@
+using System;
+using Avalonia;
 using HabboGemini.Domain.Enums;
 using HabboGemini.Presentation.ViewModels.Common;
 
@@ -7,8 +9,14 @@ public class ChatSessionViewModel : ViewModelBase
 {
     private string _id;
     private string _name;
+
     private string _description;
     private AgentState _state;
+
+    private double _x;
+    private double _y;
+    private double _width;
+    private double _height;
 
     public string Id
     {
@@ -33,6 +41,15 @@ public class ChatSessionViewModel : ViewModelBase
         get => _state;
         set => SetProperty(ref _state, value);
     }
+
+    public double X { get => _x; set => SetProperty(ref _x, value); }
+    public double Y { get => _y; set => SetProperty(ref _y, value); }
+    public double Width { get => _width; set => SetProperty(ref _width, value); }
+    public double Height { get => _height; set => SetProperty(ref _height, value); }
+
+    public Point CenterPoint => new (X + Width/2, Y + Height / 2);
+
+    public event Action? OnPositionChanged;
 
     public ChatSessionViewModel(
         string id,

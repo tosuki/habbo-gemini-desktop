@@ -16,7 +16,6 @@ public class MainViewModel : ViewModelBase
     }
 
     public ObservableCollection<ChatSessionViewModel> Sessions { get; } = new();
-
     public ChatSessionViewModel? SelectedSession
     {
         get => _selectedSession;
@@ -27,6 +26,6 @@ public class MainViewModel : ViewModelBase
     {
         // Sessões iniciais para demonstração / pré-visualização na interface
         Sessions.Add(new ChatSessionViewModel("1", "Jarvis", "Sessão principal ativa", AgentState.Trabalhando));
-        Sessions.Add(new ChatSessionViewModel("2", "Friday", "Subagente pesquisador", AgentState.Aguardando));
+        Sessions.Add(new ChatSessionViewModel("2", "Friday","Subagente pesquisador", AgentState.Aguardando));
     }
 }
