@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cards="using:HabboGemini.Presentation.Components.Cards"
+        xmlns:vm="using:HabboGemini.Presentation.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+        x:Class="HabboGemini.Presentation.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="{Binding Title}"
+        Background="#202020">
+  <Grid RowDefinitions="Auto, *">
+    <!-- Main Content Area -->
+    <Grid Grid.Row="1" Background="#2b2b2b">
+      <StackPanel VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  Spacing="15">
+        <ItemsControl ItemsSource="{Binding Sessions}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="vm:ChatSessionViewModel">
+              <cards:ChatSessionCard Margin="0, 0, 0, 12"
+                                     SessionName="{Binding Name}"
+                                     SessionDescription="{Binding Description}" />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
+    </Grid>
+  </Grid>
+</Window>
