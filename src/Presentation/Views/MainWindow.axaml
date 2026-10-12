@@ -3,28 +3,58 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cards="using:HabboGemini.Presentation.Components.Cards"
+        xmlns:connections="using:HabboGemini.Presentation.Components.Connections"
         xmlns:vm="using:HabboGemini.Presentation.ViewModels"
         mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
         x:Class="HabboGemini.Presentation.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Title="{Binding Title}"
         Background="#202020">
-  <Grid RowDefinitions="Auto, *">
-    <!-- Main Content Area -->
-    <Grid Grid.Row="1" Background="#2b2b2b">
-      <StackPanel VerticalAlignment="Center"
-                  HorizontalAlignment="Center"
-                  Spacing="15">
-        <ItemsControl ItemsSource="{Binding Sessions}">
-          <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="vm:ChatSessionViewModel">
-              <cards:ChatSessionCard Margin="0, 0, 0, 12"
-                                     SessionName="{Binding Name}"
-                                     SessionDescription="{Binding Description}" />
-            </DataTemplate>
-          </ItemsControl.ItemTemplate>
-        </ItemsControl>
-      </StackPanel>
-    </Grid>
+
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+  <Grid Background="#000000">
+
+    <!-- CAMADA 1 (Fundo): As conexões e setas -->
+    <ItemsControl ItemsSource="{Binding Connections}">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <Canvas />
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+      <ItemsControl.ItemTemplate>
+        <DataTemplate DataType="vm:ConnectionViewModel">
+          <connections:ConnectionArrow />
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+    <!-- CAMADA 2 (Frente): Os cards posicionados em X e Y -->
+    <ItemsControl ItemsSource="{Binding Sessions}">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <Canvas />
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+
+      <ItemsControl.Styles>
+        <Style Selector="ItemsControl > ContentPresenter" x:DataType="vm:ChatSessionViewModel">
+          <Setter Property="Canvas.Left" Value="{Binding X}" />
+          <Setter Property="Canvas.Top" Value="{Binding Y}" />
+        </Style>
+      </ItemsControl.Styles>
+
+      <ItemsControl.ItemTemplate>
+        <DataTemplate DataType="vm:ChatSessionViewModel">
+          <cards:ChatSessionCard Width="{Binding Width}"
+                                 Height="{Binding Height}"
+                                 SessionName="{Binding Name}"
+                                 SessionDescription="{Binding Description}" />
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
   </Grid>
 </Window>

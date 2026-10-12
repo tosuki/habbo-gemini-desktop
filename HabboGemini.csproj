@@ -1,10 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Update="src\**\*.axaml">
+      <LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+    </AvaloniaResource>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="12.1.4" />

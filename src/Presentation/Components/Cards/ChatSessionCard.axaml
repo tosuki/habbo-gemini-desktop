@@ -4,16 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:cards="using:HabboGemini.Presentation.Components.Cards"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="120"
-             x:Class="HabboGemini.Presentation.Components.Cards.ChatSessionCard">
+             x:Class="HabboGemini.Presentation.Components.Cards.ChatSessionCard"
+             x:Name="Root">
 
-  <Button Classes="session-card">
-    <StackPanel Spacing="4">
+  <Button Classes="session-card" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <StackPanel Spacing="4" VerticalAlignment="Center">
       <TextBlock
         Classes="session-card-title"
-        Text="{Binding $parent[cards:ChatSessionCard].SessionName}" />
+        Text="{Binding SessionName, ElementName=Root}" />
       <TextBlock
         Classes="session-card-description"
-        Text="{Binding $parent[cards:ChatSessionCard].SessionDescription}" />
+        Text="{Binding SessionDescription, ElementName=Root}" />
     </StackPanel>
   </Button>
 
@@ -22,7 +23,7 @@
       <Setter Property="BorderBrush" Value="White" />
       <Setter Property="BorderThickness" Value="2" />
       <Setter Property="Padding" Value="20, 15, 20, 15" />
-      <Setter Property="Background" Value="#353535" />
+      <Setter Property="Background" Value="#000000" />
       <Setter Property="CornerRadius" Value="6" />
     </Style>
 
@@ -37,7 +38,7 @@
 
     <Style Selector="Button.session-card:pointerover /template/ ContentPresenter">
       <Setter Property="BorderBrush" Value="#9c27b0" />
-      <Setter Property="Background" Value="#424242" />
+      <Setter Property="Background" Value="#000000" />
     </Style>
 
     <Style Selector="TextBlock.session-card-title">

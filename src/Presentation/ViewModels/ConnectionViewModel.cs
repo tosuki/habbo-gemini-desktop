@@ -1,6 +1,9 @@
+
 using Avalonia;
 using HabboGemini.Presentation.ViewModels;
 using HabboGemini.Presentation.ViewModels.Common;
+
+namespace HabboGemini.Presentation.ViewModels;
 
 public class ConnectionViewModel : ViewModelBase
 {
